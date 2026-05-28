@@ -17,6 +17,7 @@
       overflow: hidden;
     }
 
+
     .scene {
       position: relative;
       width: 100vw;
@@ -107,21 +108,7 @@
       to   { transform: scaleY(1);    opacity: 1; }
     }
 
-    /* 📍 헤더 밑, 우체통 위 빨간 원 구역에 고정될 설명 텍스트 스타일 */
-    .top-intro-text {
-      position: absolute;
-      top: 65px; /* 헤더 패딩 고려하여 바로 밑에 안착 */
-      left: 28px; /* 헤더 타이틀 시작 라인에 정렬 */
-      z-index: 25;
-      font-family: sans-serif;
-      font-size: 11.5px;
-      line-height: 1.6;
-      color: rgba(255, 255, 255, 0.4); /* 은은한 백색 톤 */
-      letter-spacing: 0.5px;
-      pointer-events: none;
-    }
-
-    /* 우체통 영역 */
+    /* 우체통 */
     .mailbox-wrap {
       position: absolute;
       transform: translateY(-50%);
@@ -130,9 +117,6 @@
       width: 18vw;
       max-width: 300px;
       min-width: 260px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
     .mailbox-wrap img.post-img { width: 100%; display: block; }
 
@@ -143,10 +127,9 @@
       cursor: pointer; z-index: 10;
     }
 
-    /* 금색 반짝이 버튼 문 정중앙 정렬 */
     .door-btn {
       position: absolute;
-      bottom: 31%; left: 50%;
+      bottom: 28%; left: 50%;
       transform: translateX(-50%);
       width: 34px; height: 34px;
       border-radius: 50%;
@@ -181,41 +164,6 @@
       white-space: nowrap; transition: opacity 0.4s;
     }
 
-    /* 나도 편지 남기기 버튼 스타일 */
-    .write-letter-btn {
-      margin-top: 50px;
-      padding: 12px 24px;
-      background: rgba(255, 220, 120, 0.05);
-      border: 1px dashed rgba(255, 220, 120, 0.4);
-      color: rgba(255, 220, 120, 0.85);
-      font-size: 12px;
-      letter-spacing: 2px;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: all 0.3s ease;
-      width: 85%;
-      text-align: center;
-      z-index: 20;
-    }
-    .write-letter-btn:hover {
-      background: rgba(255, 220, 120, 0.15);
-      border-color: rgba(255, 220, 120, 0.8);
-      color: #fff;
-      box-shadow: 0 0 12px rgba(255, 220, 120, 0.25);
-    }
-
-    /* 버튼 밑 설명글 스타일 */
-    .mailbox-description {
-      margin-top: 12px;
-      font-family: sans-serif;
-      font-size: 11px;
-      line-height: 1.6;
-      color: rgba(255, 255, 255, 0.35);
-      text-align: center;
-      width: 85%;
-      word-break: keep-all;
-    }
-
     /* 편지 카드 */
     .letters-container {
       position: absolute; inset: 0;
@@ -229,27 +177,10 @@
       z-index: 20;
       filter: brightness(1.06);
     }
-    
     .letter-card img {
-      position: absolute;
-      top: 0; left: 0;
       display: block;
       width: 100%; height: 100%;
       object-fit: contain;
-      pointer-events: none;
-    }
-
-    /* 순정 수식 완벽 보존 처리된 출처 위치 */
-    .letter-source {
-      position: absolute;
-      bottom: -22px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
-      font-size: 11px;
-      color: rgba(255, 255, 255, 0.35);
-      letter-spacing: 0.04em;
-      white-space: nowrap;
       pointer-events: none;
     }
 
@@ -282,69 +213,16 @@
       z-index: 10; transition: background 0.2s;
     }
     .paper-close:hover { background: rgba(255,255,255,0.95); }
-
-    /* 편지 쓰기 팝업 배경 오버레이 */
-    .write-popup-overlay {
-      position: absolute; inset: 0;
-      background: rgba(10, 10, 18, 0.8);
-      backdrop-filter: blur(4px);
-      z-index: 100;
-      display: none;
-      align-items: center; justify-content: center;
-    }
-    .write-popup-overlay.active { display: flex; }
-
-    /* 팝업 윈도우 본체 */
-    .write-popup-window {
-      position: relative;
-      background: #1e1e2f;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 35px;
-      width: 90%; max-width: 460px;
-      border-radius: 8px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-      display: flex; flex-direction: column; gap: 16px;
-    }
-    .write-popup-window h3 {
-      color: rgba(255,255,255,0.9);
-      font-size: 16px; font-weight: 400;
-      letter-spacing: 1px;
-    }
-
-    .popup-input, .popup-textarea {
-      width: 100%;
-      background: rgba(0, 0, 0, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 12px; color: #fff;
-      font-size: 13px; border-radius: 4px;
-      font-family: sans-serif;
-    }
-    .popup-input:focus, .popup-textarea:focus {
-      border-color: rgba(255, 220, 120, 0.6);
-    }
-    .popup-textarea { height: 180px; resize: none; }
-    
-    .popup-submit-btn {
-      background: rgba(255, 220, 120, 0.85);
-      border: none; padding: 12px; color: #12121f;
-      font-weight: bold; font-size: 13px; cursor: pointer;
-      border-radius: 4px; transition: background 0.2s;
-    }
-    .popup-submit-btn:hover { background: rgba(255, 220, 120, 1); }
-    .popup-close-btn {
-      position: absolute; top: 15px; right: 15px;
-      background: none; border: none; color: rgba(255,255,255,0.4);
-      font-size: 24px; cursor: pointer;
-    }
-    .popup-close-btn:hover { color: #fff; }
   </style>
 </head>
 <body>
 
+<!-- ✏️ BGM 파일 경로 -->
 <audio id="bgm" src="./audio/bgm.mp3" loop></audio>
 
 <div class="scene">
 
+  <!-- 헤더 -->
   <header class="site-header">
     <span class="site-title">편지에 마음을 담아</span>
     <div class="header-divider"></div>
@@ -354,6 +232,7 @@
         <svg id="iconPause" viewBox="0 0 24 24" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
       </button>
       <div class="bgm-track-wrap">
+        <!-- ✏️ 곡 이름 여기서 바꾸세요 -->
         <span class="bgm-track-name">김광진 - 편지</span>
         <div class="bgm-bars" id="bgmBars">
           <div class="bgm-bar paused"></div>
@@ -366,75 +245,34 @@
     </div>
   </header>
 
-  <p class="top-intro-text">
-    우리는 종종 못 다한 말을 편지로 전합니다.<br>
-    우리가 보았던 수많은 영화, 드라마 캐릭터들도 마찬가지입니다.<br>
-    영화 트와일라잇의 애드워드는 이사벨라에게,<br>
-    드라마 스물다섯 스물하나의 이진이는 희도에게 무슨말을 전하고자 했을까요. <br>
-    우체통을 열어 타인의 진심을 읽어보세요. <br>
-    닿지 못한, 마음 속에 담아 둔 말이 있다면, 편지를 보내 당신의 마음을 전해주세요.
-  </p>
+  
 
+  <!-- 우체통 -->
   <div class="mailbox-wrap">
     <img src="./images/post.png" alt="우체통" class="post-img">
     <div class="door-hitbox" id="doorHitbox"></div>
     <div class="door-btn" id="doorBtn"><div class="door-btn-dot"></div></div>
     <div class="click-hint" id="clickHint">클릭해서 우체통에 들어있는 편지를 꺼내주세요.</div>
-    
-    <button class="write-letter-btn" id="writeLetterBtn">나도 편지 남기기</button>
-    <p class="mailbox-description">전하고 싶은 소중한 이야기를 우체통에 넣어 익명으로 공유해 보세요.</p>
   </div>
 
+  <!-- 편지 카드 -->
   <div class="letters-container" id="lettersContainer">
-    <div class="letter-card" data-index="0" data-paper="./images/in1.jpg">
-      <img src="./images/letter1.png" alt="letter1">
-      <span class="letter-source">영화'해리포터'<br>호그와트 마법 학교에서 해리 포터에게.</span>
-    </div>
-    <div class="letter-card" data-index="1" data-paper="./images/in2.jpg">
-      <img src="./images/letter2.png" alt="letter2">
-      <span class="letter-source">영화 '트와일라잇'<br>에드워드가 연인 이사벨라에게.</span>
-    </div>
-    <div class="letter-card" data-index="2" data-paper="./images/in3.jpg">
-      <img src="./images/letter3.jpg" alt="letter3">
-      <span class="letter-source">영화 '그랜드 부다페스트 호텔'<br>주브로브카 공화국의 신문</span>
-    </div>
-    <div class="letter-card" data-index="3" data-paper="./images/in4.jpg">
-      <img src="./images/letter4.jpg" alt="letter4">
-      <span class="letter-source">영화 '비포 선라이즈'<br>셀린이 연인 제시에게.</span>
-    </div>
-    <div class="letter-card" data-index="4" data-paper="./images/in5.jpg">
-      <img src="./images/letter5.jpg" alt="letter5">
-      <span class="letter-source">영화 '노트북'<br>노아가 연인 앨리에게.</span>
-    </div>
-    <div class="letter-card" data-index="5" data-paper="./images/in6.png">
-      <img src="./images/letter6.png" alt="letter6">
-      <span class="letter-source">드라마 '스물다섯 스물하나'<br>이진이 연인 희도에게.</span>
-    </div>
-    <div class="letter-card" data-index="6" data-paper="./images/in7.jpg">
-      <img src="./images/letter7.jpg" alt="letter7">
-      <span class="letter-source">영화 '어톤먼트' <br> 로비가 세실리아에게 미안함을 담아.</span>
-    </div>
-    <div class="letter-card" data-index="7" data-paper="./images/in8.jfif">
-      <img src="./images/letter8.png" alt="letter8">
-      <span class="letter-source">드라마 '오월의 청춘'<br>희태가 그리운 연인 명희에게. </span>
-    </div>
+    <!-- ✏️ data-paper에 각 속지 파일 경로 -->
+    <div class="letter-card" data-index="0" data-paper="./images/in1.jpg"><img src="./images/letter1.png" alt="letter1"></div>
+    <div class="letter-card" data-index="1" data-paper="./images/in2.jpg"><img src="./images/letter2.png" alt="letter2"></div>
+    <div class="letter-card" data-index="2" data-paper="./images/in3.jpg"><img src="./images/letter3.jpg" alt="letter3"></div>
+    <div class="letter-card" data-index="3" data-paper="./images/in4.jpg"><img src="./images/letter4.jpg" alt="letter4"></div>
+    <div class="letter-card" data-index="4" data-paper="./images/in5.jpg"><img src="./images/letter5.jpg" alt="letter5"></div>
+    <div class="letter-card" data-index="5" data-paper="./images/in6.png"><img src="./images/letter6.png" alt="letter6"></div>
+    <div class="letter-card" data-index="6" data-paper="./images/in7.jpg"><img src="./images/letter7.jpg" alt="letter7"></div>
+    <div class="letter-card" data-index="7" data-paper="./images/in8.jfif"><img src="./images/letter8.png" alt="letter8"></div>
   </div>
 
+  <!-- 편지지 뷰 -->
   <div class="letter-view" id="letterView">
     <div class="letter-paper" id="letterPaper">
       <button class="paper-close" id="paperClose">×</button>
       <img src="" alt="편지지" class="paper-img" id="paperImg">
-    </div>
-  </div>
-
-  <div class="write-popup-overlay" id="writePopup">
-    <div class="write-popup-window">
-      <button class="popup-close-btn" id="popupCloseBtn">×</button>
-      <h3>마음을 담은 편지 작성</h3>
-      
-      <input type="text" placeholder="받는 사람 (예: 희도에게)" class="popup-input">
-      <textarea placeholder="이곳에 따뜻한 마음을 적어보세요..." class="popup-textarea"></textarea>
-      <button class="popup-submit-btn" id="popupSubmitBtn">우체통에 넣기</button>
     </div>
   </div>
 
@@ -444,11 +282,11 @@
   const cards = document.querySelectorAll('.letter-card');
   let opened = false;
 
+  // ✏️ in7 속지 크기 (data-index="6")
   const paperSizes = {
     6: { width: '520px', height: 'auto' },
   };
 
-  /* ⚠️ 순정 비율 100% 완전 동결 */
   function layout() {
     const W = window.innerWidth;
     const H = window.innerHeight;
@@ -465,6 +303,7 @@
 
     const rotations = [-12, 8, -6, 13, 15, -17, 7, -10];
 
+    // ✏️ 각 편지 카드 크기 (px)
     const sizes = [
       { w: 280, h: 340 },
       { w: 300, h: 350 },
@@ -532,7 +371,7 @@
     bgmStarted = true;
   });
 
-  // 우체통 클릭 이벤트
+  // 우체통
   document.getElementById('doorHitbox').addEventListener('click', () => {
     if (opened) return;
     opened = true;
@@ -556,7 +395,7 @@
     });
   });
 
-  // 편지 카드 호버 및 클릭 인터랙션
+  // 편지 카드
   cards.forEach(card => {
     card.addEventListener('mouseenter', () => {
       gsap.to(card, { y: -12, duration: 0.3, ease: 'power2.out' });
@@ -602,41 +441,6 @@
   document.getElementById('paperClose').addEventListener('click', closeLetter);
   document.getElementById('letterView').addEventListener('click', e => {
     if (e.target === e.currentTarget) closeLetter();
-  });
-
-  // 편지 쓰기 팝업 모달 스크립트
-  const writeBtn = document.getElementById('writeLetterBtn');
-  const writePopup = document.getElementById('writePopup');
-  const popupCloseBtn = document.getElementById('popupCloseBtn');
-  const popupSubmitBtn = document.getElementById('popupSubmitBtn');
-
-  writeBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    writePopup.classList.add('active');
-    gsap.fromTo(".write-popup-window", 
-      { opacity: 0, scale: 0.9 }, 
-      { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" }
-    );
-  });
-
-  function closeWritePopup() {
-    gsap.to(".write-popup-window", {
-      opacity: 0, scale: 0.9, duration: 0.3, ease: "power2.in",
-      onComplete: () => writePopup.classList.remove('active')
-    });
-  }
-
-  popupCloseBtn.addEventListener('click', closeWritePopup);
-
-  writePopup.addEventListener('click', (e) => {
-    if (e.target === e.currentTarget) closeWritePopup();
-  });
-
-  popupSubmitBtn.addEventListener('click', () => {
-    alert('편지가 마음과 함께 우체통에 소중히 보관되었습니다.');
-    closeWritePopup();
-    document.querySelector('.popup-input').value = '';
-    document.querySelector('.popup-textarea').value = '';
   });
 </script>
 </body>
